@@ -4,10 +4,13 @@ import (
 	"net/http"
 
 	"github.com/tmornini/udemy-hangman/endpoints"
+	"github.com/tmornini/udemy-hangman/secretwords"
 	"github.com/tmornini/udemy-hangman/server"
 )
 
 func main() {
+	secretwords.Initialize()
+
 	svr := server.New(
 		endpoints.Root{},
 		endpoints.ErrorAnticipated{},
