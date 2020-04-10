@@ -7,11 +7,11 @@ import (
 	"github.com/tmornini/udemy-hangman/interfaces"
 )
 
-func (server Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+func (rtr Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	pathResponders := []interfaces.Endpointable{}
 	qualifiedResponders := []interfaces.Endpointable{}
 
-	for _, ept := range server.endpoints {
+	for _, ept := range rtr.endpoints {
 		if ept.RespondsToPathOf(r) {
 			pathResponders = append(pathResponders, ept)
 
