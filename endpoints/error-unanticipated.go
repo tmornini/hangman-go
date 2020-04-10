@@ -8,8 +8,6 @@ import (
 	"github.com/tmornini/udemy-hangman/interfaces"
 )
 
-// Endpoint
-
 type ErrorUnanticipated struct{}
 
 // RespondsToPathOf implement interfaces.Endpoint
@@ -23,7 +21,7 @@ func (ep ErrorUnanticipated) RespondTo(r *http.Request) (interfaces.Entity, erro
 		return nil, errors.New("this error is expected!")
 	}
 
-	return errorUnanticipatedEntity{}, nil
+	return entities.GetErrorUnanticipatedEntity{}, nil
 }
 
 // Validate interfaces.Endpoint
@@ -33,13 +31,4 @@ func (ep ErrorUnanticipated) Validate(r *http.Request) (interfaces.Entity, error
 	}
 
 	return nil, nil
-}
-
-// Entity
-
-type errorUnanticipatedEntity struct{}
-
-// WriteResponseTo implement interfaces.Entity
-func (ety errorUnanticipatedEntity) WriteResponseTo(w http.ResponseWriter) {
-	w.WriteHeader(200)
 }

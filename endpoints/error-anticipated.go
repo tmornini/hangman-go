@@ -7,8 +7,6 @@ import (
 	"github.com/tmornini/udemy-hangman/interfaces"
 )
 
-// Endpoint
-
 type ErrorAnticipated struct{}
 
 // RespondsToPathOf implement interfaces.Endpoint
@@ -18,7 +16,7 @@ func (ep ErrorAnticipated) RespondsToPathOf(r *http.Request) bool {
 
 // RespondTo implement interfaces.Endpoint
 func (ep ErrorAnticipated) RespondTo(r *http.Request) (interfaces.Entity, error) {
-	return errorAnticipatedEntity{}, nil
+	return entities.GetErrorAnticipated{}, nil
 }
 
 // Validate interfaces.Endpoint
@@ -28,13 +26,4 @@ func (ep ErrorAnticipated) Validate(r *http.Request) (interfaces.Entity, error) 
 	}
 
 	return nil, nil
-}
-
-// Entity
-
-type errorAnticipatedEntity struct{}
-
-// WriteResponseTo implement interfaces.Entity
-func (ety errorAnticipatedEntity) WriteResponseTo(w http.ResponseWriter) {
-	w.WriteHeader(503)
 }
