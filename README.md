@@ -1,5 +1,9 @@
 # Udemy Hangman Homework Assignment
 
+## Installing dependencies on OS X
+
+* ./install-dependencies
+
 ## Testing
 
 * ./test will run basic testing infrastructure
