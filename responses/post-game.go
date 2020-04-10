@@ -1,15 +1,15 @@
-package entities
+package responses
 
 import (
 	"net/http"
 
-	"github.com/tmornini/udemy-hangman/bodies"
+	"github.com/tmornini/udemy-hangman/entities"
 )
 
-type PostGame bodies.GameGuessedLetter
+type PostGame entities.GameGuessedLetter
 
-// WriteResponseTo implement interfaces.Entity
-func (ety PostGame) WriteResponseTo(w http.ResponseWriter) error {
+// WriteTo implement interfaces.Responsible
+func (ety PostGame) WriteTo(w http.ResponseWriter) error {
 	w.WriteHeader(200)
 
 	return nil

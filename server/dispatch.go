@@ -7,28 +7,14 @@ import (
 	"github.com/tmornini/udemy-hangman/interfaces"
 )
 
-func dispatch(w http.ResponseWriter, r *http.Request, ept interfaces.Endpoint) {
-	ety, err := ept.Validate(r)
-	if ety != nil {
-		err = ety.WriteResponseTo(w)
-		if err != nil {
-			log.Println(err)
-		}
-
-		return
-	}
+func dispatch(w http.ResponseWriter, r *http.Request, ept interfaces.Endpointable) {
+	res, err := ept.Process(r)
 	if err != nil {
 		w.WriteHeader(500)
 		return
 	}
 
-	ety, err = ept.RespondTo(r)
-	if err != nil {
-		w.WriteHeader(500)
-		return
-	}
-
-	err = ety.WriteResponseTo(w)
+	err = res.WriteTo(w)
 	if err != nil {
 		log.Println(err)
 	}

@@ -2,7 +2,7 @@ package server
 
 import "github.com/tmornini/udemy-hangman/interfaces"
 
-func New(endpoints ...interfaces.Endpoint) Server {
+func New(endpoints ...interfaces.Endpointable) Server {
 	return Server{
 		endpoints: endpoints,
 	}

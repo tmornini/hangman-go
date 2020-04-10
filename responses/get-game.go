@@ -1,15 +1,15 @@
-package entities
+package responses
 
 import (
 	"net/http"
 
-	"github.com/tmornini/udemy-hangman/bodies"
+	"github.com/tmornini/udemy-hangman/entities"
 )
 
-type GetGame bodies.Game
+type GetGame entities.Game
 
-// WriteResponseTo implement interfaces.Entity
-func (ety GetGame) WriteResponseTo(w http.ResponseWriter) error {
+// WriteTo implement interfaces.Responsible
+func (ety GetGame) WriteTo(w http.ResponseWriter) error {
 	w.Header().Add("Location", "/games/"+ety.ID)
 
 	w.WriteHeader(201)

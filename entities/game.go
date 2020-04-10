@@ -1,4 +1,4 @@
-package bodies
+package entities
 
 type Game struct {
 	ID                    string

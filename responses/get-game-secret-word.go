@@ -1,15 +1,15 @@
-package entities
+package responses
 
 import (
 	"net/http"
 
-	"github.com/tmornini/udemy-hangman/bodies"
+	"github.com/tmornini/udemy-hangman/entities"
 )
 
-type GetGameSecretWord bodies.GameSecretWord
+type GetGameSecretWord entities.GameSecretWord
 
-// WriteResponseTo implement interfaces.Entity
-func (ety GetGameSecretWord) WriteResponseTo(w http.ResponseWriter) error {
+// WriteTo implement interfaces.Responsible
+func (ety GetGameSecretWord) WriteTo(w http.ResponseWriter) error {
 	w.WriteHeader(200)
 
 	_, err := w.Write([]byte(ety.SecretWord + "\n"))

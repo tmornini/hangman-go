@@ -1,9 +1,9 @@
 package interfaces
 
 type Store interface {
-	Get(Metadata) (StorableEntity, error)
-	GetCollection(Metadata) ([]StorableEntity, error)
-	GetHistory(Metadata) ([]StorableEntity, error)
-	Put(StorableEntity) error
-	PutIfMatch(StorableEntity) error
+	Get(Metadata) (StorableResponse, error)
+	GetCollection(Metadata) ([]StorableResponse, error)
+	GetHistory(Metadata) ([]StorableResponse, error)
+	Put(StorableResponse) error
+	PutIfMatch(StorableResponse) error
 }

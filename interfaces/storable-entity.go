@@ -1,6 +1,6 @@
 package interfaces
 
-type StorableEntity interface {
-	Entity
+type StorableResponse interface {
+	Responsible
 	MetaData() Metadata
 }

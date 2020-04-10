@@ -15,9 +15,9 @@ func main() {
 	}
 
 	svr := server.New(
-		endpoints.Root{},
-		endpoints.ErrorAnticipated{},
-		endpoints.ErrorUnanticipated{},
+		endpoints.GetRoot{},
+		endpoints.GetErrorAnticipated{},
+		endpoints.GetErrorUnanticipated{},
 	)
 
 	err = http.ListenAndServe(":80", svr)

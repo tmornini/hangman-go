@@ -1,11 +1,11 @@
-package entities
+package responses
 
 import "net/http"
 
 type PostGames GetGame
 
-// WriteResponseTo implement interfaces.Entity
-func (ety PostGames) WriteResponseTo(w http.ResponseWriter) error {
+// WriteTo implement interfaces.Responsible
+func (ety PostGames) WriteTo(w http.ResponseWriter) error {
 	w.Header().Add("Location", "/games/"+ety.ID)
 	w.WriteHeader(201)
 
