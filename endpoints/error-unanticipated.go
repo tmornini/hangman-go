@@ -4,13 +4,16 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/tmornini/udemy-hangman/entities"
 	"github.com/tmornini/udemy-hangman/interfaces"
 )
 
+// Endpoint
+
 type ErrorUnanticipated struct{}
 
-// RespondsTo implement interfaces.
-func (ep ErrorUnanticipated) RespondsTo(r *http.Request) bool {
+// RespondsToPathOf implement interfaces.Endpoint
+func (ep ErrorUnanticipated) RespondsToPathOf(r *http.Request) bool {
 	return r.URL.Path == "/error-unanticipated"
 }
 
@@ -22,6 +25,17 @@ func (ep ErrorUnanticipated) RespondTo(r *http.Request) (interfaces.Entity, erro
 
 	return errorUnanticipatedEntity{}, nil
 }
+
+// Validate interfaces.Endpoint
+func (ep ErrorUnanticipated) Validate(r *http.Request) (interfaces.Entity, error) {
+	if r.Method != "GET" {
+		return entities.MethodNotAllowed{}, nil
+	}
+
+	return nil, nil
+}
+
+// Entity
 
 type errorUnanticipatedEntity struct{}
 

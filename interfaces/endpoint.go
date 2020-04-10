@@ -3,6 +3,7 @@ package interfaces
 import "net/http"
 
 type Endpoint interface {
-	RespondsTo(*http.Request) bool
+	RespondsToPathOf(*http.Request) bool
 	RespondTo(*http.Request) (Entity, error)
+	Validate(*http.Request) (Entity, error)
 }

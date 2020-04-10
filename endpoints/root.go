@@ -3,20 +3,34 @@ package endpoints
 import (
 	"net/http"
 
+	"github.com/tmornini/udemy-hangman/entities"
 	"github.com/tmornini/udemy-hangman/interfaces"
 )
 
+// Endpoint
+
 type Root struct{}
 
-// RespondsTo implement interfaces.Endpoint
-func (ep Root) RespondsTo(r *http.Request) bool {
+// RespondsToPathOf implement interfaces.Endpoint
+func (ep Root) RespondsToPathOf(r *http.Request) bool {
 	return r.URL.Path == "/"
 }
 
-// RespondsTo implement interfaces.Endpoint
+// RespondTo implement interfaces.Endpoint
 func (ep Root) RespondTo(r *http.Request) (interfaces.Entity, error) {
 	return rootEntity{}, nil
 }
+
+// Validate interfaces.Endpoint
+func (ep Root) Validate(r *http.Request) (interfaces.Entity, error) {
+	if r.Method != "GET" {
+		return entities.MethodNotAllowed{}, nil
+	}
+
+	return nil, nil
+}
+
+// Entity
 
 type rootEntity struct{}
 
