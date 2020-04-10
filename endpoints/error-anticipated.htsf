@@ -1,0 +1,7 @@
+> GET /error-anticipated HTTP/1.1
+>
+
+< HTTP/1.1 503 Service Unavailable
+< Content-Length: 0
+< Date: ⧆⧆:date⧆
+< 

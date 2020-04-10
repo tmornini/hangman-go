@@ -1,0 +1,9 @@
+#!/bin/bash
+
+WORD_FILE_PATHNAME=/usr/share/dict/words go run main.go &
+
+sleep 1
+
+find . -name "*.htsf" | xargs http-spec -hostname localhost -scheme http
+
+ps auxw | grep [g]o-build | awk '{print $2}' | xargs kill

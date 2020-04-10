@@ -1,0 +1,7 @@
+> GET /error-unanticipated HTTP/1.1
+>
+
+< HTTP/1.1 500 Internal Server Error
+< Content-Length: 0
+< Date: ⧆⧆:date⧆
+< 

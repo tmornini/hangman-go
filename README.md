@@ -1,5 +1,9 @@
 # Udemy Hangman Homework Assignment
 
+## Testing
+
+* ./test will run basic testing infrastructure
+
 ## Environment Variables
 
 * export WORD_FILE_PATHNAME=/usr/share/dict/words
