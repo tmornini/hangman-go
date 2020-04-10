@@ -1,10 +1,13 @@
-#> POST /games/ HTTP/1.1
+#> POST /games/1 HTTP/1.1
 #>
+#> {
+#>   "guessed-letter": "c"
+#> }
 #
-#< HTTP/1.1 201 Created
+#< HTTP/1.1 200 Ok
 #< Content-Length: 0
 #< Date: ⧆⧆:date⧆
-#< Location: /games/uuid
+#< Location: blah
 #< 
 #< {
 #<   "unmasked-letters": ["","","","","","",""],

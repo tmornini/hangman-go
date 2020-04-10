@@ -13,23 +13,20 @@
 * export WORD_FILE_PATHNAME=/usr/share/dict/words
   * Unix dict file on Mac OS X
 
-## Unauthenticated Endpoints
+## Endpoints
 
-* POST /games
-  * create initial game state and redirect to new game on success
+* GET /hames/:game-id/secret-word
+  * get-game-secret-word
 
-  * headers: nothing special
-  
-  * internally calls:
-    * PUT /games/:game-id
-    * PUT /games/:game-id/secret-word
+  * headers:
+    * Authorization:, token
 
-  * possible responses
-    * 302, Location: /games/:game-id
-    * 500
+  * 200, body: Game-Secret-Word entity
+  * 404, game or game word not found
+  * 500
 
 * GET /games/:game-id
-  * get current game state
+  * get-game
 
   * possible responses
     * 200, body: Game entity
@@ -37,7 +34,7 @@
     * 500
 
 * POST /games/:game-id
-  * make a guess
+  * post-game (guess a letter)
 
   * headers:
     * If-Match:, for optimistic locking via ETag, passes through to PUT /games/:game-id
@@ -57,13 +54,30 @@
     * 409, optimistic locking failed
     * 500
 
-## Authenticated Endpoints
+* POST /games
+  * post-games (create a new game)
+
+  * headers: nothing special
+  
+  * internally calls:
+    * PUT /games/:game-id
+    * PUT /games/:game-id/secret-word
+
+  * possible responses
+    * 302, Location: /games/:game-id
+    * 500
+
+* GET /games/:game-id/history
+  * get-game-history
+
+  * body: list of game states, oldest to newest
 
 * PUT /games/:game-id
-  * create or update game state, store history via ETag
+  * put-game
 
   * headers:
     * If-Match:, for optimistic locking via ETag
+    * Authorization:, token
 
   * body: Game entity
 
@@ -76,6 +90,9 @@
 * PUT /games/:game-id/secret-word
   * create game's secret word
 
+  * headers:
+    * Authorization:, token
+
   * body: Game-Secret-Word entity
 
   * possible responses
@@ -83,11 +100,6 @@
     * 406, validation failed
     * 409, word already set
     * 500
-
-* GET /hames/:game-id/secret-word
-  * 200, body: Game-Secret-Word entity
-  * 404, game or game word not found
-  * 500
 
 ## Entity Specification
 

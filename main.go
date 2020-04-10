@@ -16,7 +16,6 @@ func main() {
 	server.Serve(
 		":80",
 		router.New(
-			endpoints.GetRoot{},
 			endpoints.GetErrorAnticipated{},
 			endpoints.GetErrorUnanticipated{},
 		),

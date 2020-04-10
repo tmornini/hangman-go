@@ -1,0 +1,25 @@
+#> GET /games/1 HTTP/1.1
+#>
+#
+#< HTTP/1.1 200 Ok
+#< Content-Length: 0
+#< Date: ⧆⧆:date⧆
+#< 
+#> {
+#>   "unmasked-letters": ["","","","","","",""],
+#>   "wrong-guesses-remaining": 10,
+#>   "guessed-letter-history": [
+#>     {
+#>       "guessed-letter": "a",
+#>       "unmasked-count": 2
+#>     },
+#>     {
+#>       "guessed-letter": "b",
+#>       "unmasked-count": 0
+#>     },
+#>     {
+#>       "guessed-letter": "c",
+#>       "unmasked-count": 0
+#>     }
+#>   ]
+#> }
