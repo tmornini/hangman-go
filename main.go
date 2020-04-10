@@ -9,7 +9,10 @@ import (
 )
 
 func main() {
-	secretwords.Initialize()
+	err := secretwords.Initialize()
+	if err != nil {
+		panic(err)
+	}
 
 	svr := server.New(
 		endpoints.Root{},
@@ -17,7 +20,7 @@ func main() {
 		endpoints.ErrorUnanticipated{},
 	)
 
-	err := http.ListenAndServe(":80", svr)
+	err = http.ListenAndServe(":80", svr)
 	if err != nil {
 		panic(err)
 	}

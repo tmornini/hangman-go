@@ -1,6 +1,7 @@
 package server
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/tmornini/udemy-hangman/interfaces"
@@ -9,7 +10,11 @@ import (
 func dispatch(w http.ResponseWriter, r *http.Request, ept interfaces.Endpoint) {
 	ety, err := ept.Validate(r)
 	if ety != nil {
-		ety.WriteResponseTo(w)
+		err = ety.WriteResponseTo(w)
+		if err != nil {
+			log.Println(err)
+		}
+
 		return
 	}
 	if err != nil {
@@ -23,5 +28,8 @@ func dispatch(w http.ResponseWriter, r *http.Request, ept interfaces.Endpoint) {
 		return
 	}
 
-	ety.WriteResponseTo(w)
+	err = ety.WriteResponseTo(w)
+	if err != nil {
+		log.Println(err)
+	}
 }
