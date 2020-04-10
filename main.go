@@ -4,8 +4,8 @@ import (
 	"net/http"
 
 	"github.com/tmornini/udemy-hangman/endpoints"
+	"github.com/tmornini/udemy-hangman/router"
 	"github.com/tmornini/udemy-hangman/secretwords"
-	"github.com/tmornini/udemy-hangman/server"
 )
 
 func main() {
@@ -14,13 +14,13 @@ func main() {
 		panic(err)
 	}
 
-	svr := server.New(
+	rtr := router.New(
 		endpoints.GetRoot{},
 		endpoints.GetErrorAnticipated{},
 		endpoints.GetErrorUnanticipated{},
 	)
 
-	err = http.ListenAndServe(":80", svr)
+	err = http.ListenAndServe(":80", rtr)
 	if err != nil {
 		panic(err)
 	}
