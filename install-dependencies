@@ -1,3 +1,4 @@
 #!/bin/bash
 
 go get -u github.com/tmornini/http-spec || exit 1
+go get -u github.com/google/uuid        || exit 1
