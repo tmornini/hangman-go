@@ -17,6 +17,7 @@ func main() {
 		":80",
 		router.New(
 			endpoints.PostGames{},
+			endpoints.PutGameSecretWord{},
 			endpoints.GetErrorAnticipated{},
 			endpoints.GetErrorUnanticipated{},
 		),

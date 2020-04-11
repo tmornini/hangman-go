@@ -1,5 +1,6 @@
 package entities
 
 type GameSecretWord struct {
-	SecretWord string
+	ID         string `json:"-"`
+	SecretWord string `json:"secret-word"`
 }
