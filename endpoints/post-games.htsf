@@ -1,26 +1,15 @@
-#> POST /games/ HTTP/1.1
-#>
-#
-#< HTTP/1.1 201 Created
-#< Content-Length: 0
-#< Date: ⧆⧆:date⧆
-#< Location: /games/uuid
-#< 
-#< {
-#<   "unmasked-letters": ["","","","","","",""],
-#<   "wrong-guesses-remaining": 10,
-#<   "guessed-letter-history": [
-#<     {
-#<       "guessed-letter": "a",
-#<       "unmasked-count": 2
-#<     },
-#<     {
-#<       "guessed-letter": "b",
-#<       "unmasked-count": 0
-#<     },
-#<     {
-#<       "guessed-letter": "c",
-#<       "unmasked-count": 0
-#<     }
-#<   ]
-#< }
+> POST /games/ HTTP/1.1
+>
+
+< HTTP/1.1 201 Created
+< Content-Length: ⧆⧆\d+⧆
+< Content-Type: application/json
+< Date: ⧆⧆:date⧆
+< Etag: ⧆etag⧆[0-9a-f]{64}⧆
+< Location: /games/⧆id⧆[0-9a-f]{32}⧆
+<
+< {
+<   "unmasked-letters": [],
+<   "wrong-guesses-remaining": 10,
+<   "guessed-letter-history": []
+< }

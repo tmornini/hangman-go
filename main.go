@@ -16,6 +16,7 @@ func main() {
 	server.Serve(
 		":80",
 		router.New(
+			endpoints.PostGames{},
 			endpoints.GetErrorAnticipated{},
 			endpoints.GetErrorUnanticipated{},
 		),

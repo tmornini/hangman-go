@@ -3,12 +3,11 @@ package endpoints
 import (
 	"net/http"
 
+	"github.com/tmornini/udemy-hangman/entities"
 	"github.com/tmornini/udemy-hangman/interfaces"
 	"github.com/tmornini/udemy-hangman/responses"
 	"github.com/tmornini/udemy-hangman/uuid"
 )
-
-// Endpoint
 
 type PostGames struct{}
 
@@ -24,5 +23,10 @@ func (ep PostGames) RespondsToMethodOf(r *http.Request) bool {
 
 // Process implement interfaces.Endpoint
 func (ep PostGames) Process(r *http.Request) (interfaces.Responsible, error) {
-	return responses.PostGames{ID: uuid.Generate()}, nil
+	return responses.PostGames{
+		ID:                    uuid.Generate(),
+		UnmaskedLetters:       []string{},
+		WrongGuessesRemaining: 10,
+		GuessedLetterHistory:  []entities.GameGuessedLetter{},
+	}, nil
 }
