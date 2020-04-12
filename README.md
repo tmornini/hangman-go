@@ -15,7 +15,7 @@
 
 ## Endpoints
 
-* GET /hames/:game-id/secret-word
+* GET /games/:game-id/secret-word
   * get-game-secret-word
 
   * headers:
@@ -92,6 +92,7 @@
 
   * headers:
     * Authorization:, token
+    * If-None-Match:
 
   * body: Game-Secret-Word entity
 
