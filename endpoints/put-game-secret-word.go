@@ -27,10 +27,6 @@ func (ep PutGameSecretWord) RespondsToMethodOf(r *http.Request) bool {
 
 // Process implement interfaces.Endpoint
 func (ep PutGameSecretWord) Process(r *http.Request) (interfaces.Responsible, error) {
-	if r.Header.Get("Authorization") != "Bearer server-token" {
-		return responses.Unauthorized{}, nil
-	}
-
 	return responses.PutGameSecretWord{
 		SecretWord: "secret",
 	}, nil

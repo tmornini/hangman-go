@@ -1,6 +1,8 @@
 package authorizers
 
 import (
+	"net/http"
+
 	"github.com/tmornini/udemy-hangman/interfaces"
 	"github.com/tmornini/udemy-hangman/responses"
 )
@@ -8,15 +10,11 @@ import (
 type Token struct {
 }
 
-func (authn Token) Authorize(req interfaces.Requestable) interfaces.Responsible {
-	exists, authorizations := req.Get("header.Authorization")
+func (authn Token) Authorize(r *http.Request) interfaces.Responsible {
+	authorization := r.Header.Get("Authorization")
 
-	if exists && authorizations[0] == "Bearer server-token" {
+	if authorization == "Bearer server-token" {
 		return nil
-	}
-
-	if exists {
-		return responses.Forbidden{}
 	}
 
 	return responses.Unauthorized{}

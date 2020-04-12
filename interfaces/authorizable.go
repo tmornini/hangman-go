@@ -1,5 +1,7 @@
 package interfaces
 
+import "net/http"
+
 type Authorizable interface {
-	Authorize(Requestable) Responsible
+	Authorize(*http.Request) Responsible
 }

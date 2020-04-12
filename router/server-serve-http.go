@@ -37,5 +37,12 @@ func (rtr Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		)
 	}
 
-	dispatch(w, r, qualifiedResponders[0])
+	ept := qualifiedResponders[0]
+
+	res := ept.Authorize(r)
+	if res != nil {
+		respond(w, res)
+	} else {
+		dispatch(w, r, ept)
+	}
 }

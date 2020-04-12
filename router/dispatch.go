@@ -1,7 +1,6 @@
 package router
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/tmornini/udemy-hangman/interfaces"
@@ -14,8 +13,5 @@ func dispatch(w http.ResponseWriter, r *http.Request, ept interfaces.Endpointabl
 		return
 	}
 
-	err = res.SerializeTo(w)
-	if err != nil {
-		log.Println(err)
-	}
+	respond(w, res)
 }
