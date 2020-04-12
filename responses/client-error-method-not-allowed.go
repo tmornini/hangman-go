@@ -1,11 +1,17 @@
 package responses
 
-import "net/http"
+import (
+	"net/http"
 
-type MethodNotAllowed struct{}
+	"github.com/tmornini/udemy-hangman/interfaces"
+)
 
-// WriteTo implement interfaces.Responsible
-func (res MethodNotAllowed) WriteTo(w http.ResponseWriter) error {
+type MethodNotAllowed struct {
+	interfaces.Getable
+}
+
+// SerializeTo implement interfaces.Responsible
+func (res MethodNotAllowed) SerializeTo(w http.ResponseWriter) error {
 	w.WriteHeader(405)
 
 	return nil

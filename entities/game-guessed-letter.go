@@ -1,7 +1,6 @@
 package entities
 
 type GameGuessedLetter struct {
-	GameID        string
-	GuessedLetter string
-	UnmaskedCount int
+	GuessedLetter string `json:"guessed-letter"`
+	UnmaskedCount int    `json:"unmasked-count"`
 }

@@ -8,7 +8,9 @@ import (
 	"github.com/tmornini/udemy-hangman/responses"
 )
 
-type GetErrorUnanticipated struct{}
+type GetErrorUnanticipated struct {
+	interfaces.Authorizable
+}
 
 // RespondsToPathOf implement interfaces.Endpoint
 func (ep GetErrorUnanticipated) RespondsToPathOf(r *http.Request) bool {

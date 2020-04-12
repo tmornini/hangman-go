@@ -14,7 +14,7 @@ func dispatch(w http.ResponseWriter, r *http.Request, ept interfaces.Endpointabl
 		return
 	}
 
-	err = res.WriteTo(w)
+	err = res.SerializeTo(w)
 	if err != nil {
 		log.Println(err)
 	}

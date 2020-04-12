@@ -1,6 +1,7 @@
 package endpoints
 
 import (
+	"errors"
 	"net/http"
 	"regexp"
 
@@ -9,22 +10,14 @@ import (
 )
 
 type PutGameSecretWord struct {
-	id string
+	interfaces.Authorizable
 }
 
 // RespondsToPathOf implement interfaces.Endpoint
 func (ep PutGameSecretWord) RespondsToPathOf(r *http.Request) bool {
-	re := regexp.MustCompile("/games/([^/]+)/secret-word")
+	_, err := ep.gameIDFrom(r)
 
-	matches := re.FindStringSubmatch(r.URL.Path)
-
-	if len(matches) == 0 {
-		return false
-	}
-
-	ep.id = matches[1]
-
-	return true
+	return err == nil
 }
 
 // RespondsToMethodOf implement interfaces.Endpoint
@@ -34,12 +27,24 @@ func (ep PutGameSecretWord) RespondsToMethodOf(r *http.Request) bool {
 
 // Process implement interfaces.Endpoint
 func (ep PutGameSecretWord) Process(r *http.Request) (interfaces.Responsible, error) {
-	if r.Header.Get("Authorization") != "server-token" {
+	if r.Header.Get("Authorization") != "Bearer server-token" {
 		return responses.Unauthorized{}, nil
 	}
 
 	return responses.PutGameSecretWord{
-		ID:         ep.id,
 		SecretWord: "secret",
 	}, nil
+}
+
+var gameIDRegexp = regexp.MustCompile("/games/([^/]+)/secret-word")
+
+func (ep PutGameSecretWord) gameIDFrom(r *http.Request) (string, error) {
+
+	matches := gameIDRegexp.FindStringSubmatch(r.URL.Path)
+
+	if len(matches) == 0 {
+		return "", errors.New("could not match path")
+	}
+
+	return matches[1], nil
 }

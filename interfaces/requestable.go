@@ -1,6 +1,6 @@
 package interfaces
 
-type Responsible interface {
+type Requestable interface {
 	Getable
 	SerializeToable
 }

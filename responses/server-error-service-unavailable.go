@@ -1,11 +1,17 @@
 package responses
 
-import "net/http"
+import (
+	"net/http"
 
-type ServiceNotAvailable struct{}
+	"github.com/tmornini/udemy-hangman/interfaces"
+)
 
-// WriteTo implement interfaces.Responsible
-func (ety ServiceNotAvailable) WriteTo(w http.ResponseWriter) error {
+type ServiceNotAvailable struct {
+	interfaces.Getable `json:"-"`
+}
+
+// SerializeTo implement interfaces.Responsible
+func (ety ServiceNotAvailable) SerializeTo(w http.ResponseWriter) error {
 	w.WriteHeader(503)
 
 	return nil

@@ -8,7 +8,9 @@ import (
 	"github.com/tmornini/udemy-hangman/secretwords"
 )
 
-type GetGameSecretWord struct{}
+type GetGameSecretWord struct {
+	interfaces.Authorizable
+}
 
 // RespondsToPathOf implement interfaces.Endpoint
 func (ep GetGameSecretWord) RespondsToPathOf(r *http.Request) bool {

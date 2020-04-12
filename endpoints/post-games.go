@@ -9,7 +9,9 @@ import (
 	"github.com/tmornini/udemy-hangman/uuid"
 )
 
-type PostGames struct{}
+type PostGames struct {
+	interfaces.Authorizable
+}
 
 // RespondsToPathOf implement interfaces.Endpoint
 func (ep PostGames) RespondsToPathOf(r *http.Request) bool {

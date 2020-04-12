@@ -1,6 +1,8 @@
 package entities
 
+import "github.com/tmornini/udemy-hangman/interfaces"
+
 type GameSecretWord struct {
-	ID         string `json:"-"`
-	SecretWord string `json:"secret-word"`
+	interfaces.Getable `json:"-"`
+	SecretWord         string `json:"secret-word"`
 }

@@ -11,9 +11,9 @@ import (
 
 type PutGameSecretWord entities.GameSecretWord
 
-// WriteTo implement interfaces.Responsible
-func (ety PutGameSecretWord) WriteTo(w http.ResponseWriter) error {
-	body, err := serializer.Serialize(ety, "application/json")
+// SerializeTo implement interfaces.Responsible
+func (res PutGameSecretWord) SerializeTo(w http.ResponseWriter) error {
+	body, err := serializer.Serialize(res, "application/json")
 	if err != nil {
 		return err
 	}

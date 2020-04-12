@@ -4,12 +4,17 @@ import (
 	"net/http"
 
 	"github.com/tmornini/udemy-hangman/entities"
+	"github.com/tmornini/udemy-hangman/interfaces"
 )
 
-type PostGame entities.GameGuessedLetter
+type PostGame struct {
+	interfaces.Getable `json:"-"`
 
-// WriteTo implement interfaces.Responsible
-func (ety PostGame) WriteTo(w http.ResponseWriter) error {
+	entities.GameGuessedLetter
+}
+
+// SerializeTo implement interfaces.Responsible
+func (ety PostGame) SerializeTo(w http.ResponseWriter) error {
 	w.WriteHeader(200)
 
 	return nil
